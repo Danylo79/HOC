@@ -1,5 +1,6 @@
 package dev.dankom.hoc.commands;
 
+import dev.dankom.hoc.commands.commands.MathCommand;
 import dev.dankom.hoc.commands.commands.TestCommand;
 import dev.dankom.hoc.util.ListHelper;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -16,6 +17,7 @@ public class CommandManager {
 
     public CommandManager() {
         addCommand(new TestCommand());
+        addCommand(new MathCommand());
     }
 
     public void addCommand(ICommand command) {
