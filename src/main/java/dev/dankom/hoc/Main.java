@@ -13,7 +13,7 @@ public class Main {
         //Register Listeners
         jda.addEventListener(new CommandListener());
         //------------------
-        jda.getPresence().setActivity(Activity.watching("Danylo is the best!"));
+        jda.getPresence().setActivity(Activity.watching("~help"));
     }
 
     public static JDA getJDA() {

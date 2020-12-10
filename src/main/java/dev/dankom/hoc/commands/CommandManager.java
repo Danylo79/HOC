@@ -1,7 +1,7 @@
 package dev.dankom.hoc.commands;
 
+import dev.dankom.hoc.commands.commands.HelpCommand;
 import dev.dankom.hoc.commands.commands.MathCommand;
-import dev.dankom.hoc.commands.commands.TestCommand;
 import dev.dankom.hoc.util.ListHelper;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
@@ -16,8 +16,8 @@ public class CommandManager {
     public static String PREFIX = "~";
 
     public CommandManager() {
-        addCommand(new TestCommand());
         addCommand(new MathCommand());
+        addCommand(new HelpCommand());
     }
 
     public void addCommand(ICommand command) {
@@ -27,7 +27,7 @@ public class CommandManager {
     }
 
     @Nullable
-    private ICommand getCommand(String search) {
+    public ICommand getCommand(String search) {
         String searchLower = search.toLowerCase();
 
         for (ICommand cmd : this.commands) {
@@ -40,6 +40,8 @@ public class CommandManager {
     }
 
     public void handle(MessageReceivedEvent e) {
+        if (e.getAuthor().isBot()) { return; }
+
         String[] split = e.getMessage().getContentRaw()
                 .replaceFirst("(?i)" + Pattern.quote(PREFIX), "")
                 .split("\\s+");
